@@ -52,16 +52,20 @@
       animation: pulse 1.5s infinite;
     }
 
-    /* Fallback message for users with JavaScript disabled */
-    noscript {
-      color: white;
-      font-size: 1.5rem;
+    /* Style for incoming surprise message */
+    #incoming-message {
+      font-size: 2rem;
+      font-weight: bold;
       padding: 20px;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 15px;
+      visibility: visible; /* Make it visible initially */
     }
   </style>
 </head>
 <body>
-  <div id="countdown">Incoming surprise...</div>
+  <div id="incoming-message">Incoming surprise...</div>
+  <div id="countdown"></div>
 
   <script>
     // Get the current year
@@ -77,8 +81,9 @@
 
     // Show "Incoming surprise..." for 3 seconds, then start countdown
     setTimeout(() => {
-      document.getElementById('countdown').innerHTML = "0d 0h 0m 0s"; // Initialize countdown text
-      document.getElementById('countdown').style.visibility = 'visible'; // Show countdown
+      // Hide incoming message and show countdown
+      document.getElementById('incoming-message').style.visibility = 'hidden';
+      document.getElementById('countdown').style.visibility = 'visible';
     }, 3000); // Wait for 3 seconds before switching
 
     // Update the countdown every second
