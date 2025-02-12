@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Countdown to February 14th</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      text-align: center;
+      background-color: #228B22; /* Forest green background */
+      margin: 0;
+      padding: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      color: white; /* White text color */
+    }
+    #countdown {
+      font-size: 2rem;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div id="countdown">Loading countdown...</div>
+
+  <script>
+    // Set the target date and time (February 14th, 12:00 AM)
+    const targetDate = new Date('February 14, 2025 00:00:00').getTime();
+
+    // Update the countdown every second
+    const countdown = setInterval(() => {
+      const now = new Date().getTime();
+      const timeLeft = targetDate - now;
+
+      // Calculate days, hours, minutes, and seconds
+      const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+      // Display the countdown
+      document.getElementById('countdown').innerHTML = `
+        ${days}d ${hours}h ${minutes}m ${seconds}s
+      `;
+
+      // If the countdown is over, redirect to the new page
+      if (timeLeft < 0) {
+        clearInterval(countdown);
+        window.location.href = 'celebration.html';
+      }
+    }, 1000);
+  </script>
+</body>
+</html>
