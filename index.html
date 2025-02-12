@@ -32,6 +32,7 @@
       max-width: 80%;
       width: 400px;
       margin: 0 auto;
+      visibility: hidden; /* Hide the countdown initially */
     }
 
     /* Add pulsing effect to make countdown more dynamic */
@@ -73,6 +74,12 @@
     if (new Date().getTime() > targetDate) {
       targetDate = new Date(`February 14, ${currentYear + 1} 00:00:00`).getTime();
     }
+
+    // Show "Incoming surprise..." for 3 seconds, then start countdown
+    setTimeout(() => {
+      document.getElementById('countdown').innerHTML = "0d 0h 0m 0s"; // Initialize countdown text
+      document.getElementById('countdown').style.visibility = 'visible'; // Show countdown
+    }, 3000); // Wait for 3 seconds before switching
 
     // Update the countdown every second
     const countdown = setInterval(() => {
