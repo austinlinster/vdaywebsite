@@ -6,17 +6,20 @@
   <title>Celebration!</title>
   <style>
     body {
-      margin: 0;
-      padding: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #002b00; /* Forest green background */
-      background-image: url('./background.jpeg');
-      background-size: cover;
-      background-position: center;
-    }
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* Background image styles */
+  background-color: #002b00; /* Fallback color */
+  background-image: url('background.jpeg'); /* Replace with your actual image */
+  background-size: cover; /* Ensures the image covers the screen */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents tiling */
+}
     .message-box {
   background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
   padding: 40px;

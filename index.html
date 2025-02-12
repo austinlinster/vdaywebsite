@@ -4,9 +4,12 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Countdown to February 14th</title>
+  <!-- Google Fonts for a more elegant, invitation-style font -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&display=swap" rel="stylesheet">
+
   <style>
     body {
-      font-family: Helvetica, Arial, sans-serif;
+      font-family: 'Great Vibes', cursive; /* Elegant, invitation-worthy font */
       text-align: center;
       background-color: #002b00; /* Forest green background */
       margin: 0;
@@ -14,12 +17,45 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      height: 200vh;
+      height: 100vh; /* Full-screen height */
       color: white; /* White text color */
     }
+    
     #countdown {
-      font-size: 2rem;
+      font-size: 3rem; /* Larger font for impact */
       font-weight: bold;
+      padding: 20px;
+      border: 3px solid white; /* Adds a clean border for emphasis */
+      border-radius: 15px;
+      background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black background */
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.6); /* Soft shadow effect */
+      max-width: 80%;
+      width: 400px;
+      margin: 0 auto;
+    }
+
+    /* Add pulsing effect to make countdown more dynamic */
+    @keyframes pulse {
+      0% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.05);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    #countdown {
+      animation: pulse 1.5s infinite;
+    }
+
+    /* Fallback message for users with JavaScript disabled */
+    noscript {
+      color: white;
+      font-size: 1.5rem;
+      padding: 20px;
     }
   </style>
 </head>
@@ -27,8 +63,16 @@
   <div id="countdown">Incoming surprise...</div>
 
   <script>
-    // Set the target date and time (February 14th, 12:00 AM)
-    const targetDate = new Date('February 14, 2025 00:00:00').getTime();
+    // Get the current year
+    const currentYear = new Date().getFullYear();
+
+    // Set target date to February 14th of the current year
+    let targetDate = new Date(`February 14, ${currentYear} 00:00:00`).getTime();
+
+    // If today is past February 14th, set target to next year
+    if (new Date().getTime() > targetDate) {
+      targetDate = new Date(`February 14, ${currentYear + 1} 00:00:00`).getTime();
+    }
 
     // Update the countdown every second
     const countdown = setInterval(() => {
@@ -49,9 +93,20 @@
       // If the countdown is over, redirect to the new page
       if (timeLeft < 0) {
         clearInterval(countdown);
-        window.location.href = 'celebration.html';
+        document.getElementById('countdown').innerHTML = 'Redirecting to your surprise...';
+        setTimeout(() => {
+          window.location.href = 'celebration.html';
+        }, 3000); // Wait for 3 seconds before redirecting
       }
     }, 1000);
   </script>
+
+  <!-- Fallback message for users without JavaScript -->
+  <noscript>
+    <div style="color: white; font-size: 1.5rem; padding: 20px;">
+      Please enable JavaScript to view the countdown!
+    </div>
+  </noscript>
+
 </body>
 </html>
