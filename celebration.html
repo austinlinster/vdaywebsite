@@ -14,14 +14,12 @@
       display: flex;
       justify-content: center;
       align-items: center;
-
-      /* Background image styles */
+      position: relative;
       background-color: #002b00; /* Fallback color */
       background-image: url('background.jpeg'); /* Replace with your actual image */
       background-size: cover; /* Ensures the image covers the screen */
       background-position: center; /* Centers the image */
       background-repeat: no-repeat; /* Prevents tiling */
-      position: relative;
     }
 
     /* Optional gradient overlay on background */
@@ -40,45 +38,48 @@
       position: relative;
       z-index: 2; /* Ensure it appears above the overlay */
       background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
-      padding: 40px;
+      padding: 20px;
       border-radius: 10px;
       text-align: center;
       box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-      width: 300px; /* Fixed width */
-      max-width: 90%; /* Responsive cap */
+      width: 300px;
+      max-width: 90%;
+      height: auto;
+      max-height: 70vh; /* Limit vertical height */
+      overflow-y: auto; /* Allow scrolling if content overflows */
     }
 
     h1 {
       font-family: 'Great Vibes', cursive;
-      font-size: 2.8rem;
-      color: #002b00; /* Forest green text */
+      font-size: 2.2rem;
+      color: #002b00;
       margin-bottom: 10px;
       animation: fadeIn 2s ease-in-out;
     }
 
     p {
       font-family: 'Merriweather', serif;
-      font-size: 1.2rem;
+      font-size: 1.1rem;
       color: #333;
       line-height: 1.6;
     }
 
-    /* Subtle blinking heart animation */
     .heart {
       color: red;
       font-size: 1.5rem;
       animation: blink 1.5s infinite;
     }
 
-    @keyframes blink {
-      0%, 100% {
-        opacity: 1;
-      }
-      50% {
-        opacity: 0.5;
-      }
+    .checkbox-group {
+      margin-top: 20px;
     }
 
+    .checkbox-group label {
+      font-size: 1.2rem;
+      margin-right: 10px;
+    }
+
+    /* Animation for fading in */
     @keyframes fadeIn {
       from {
         opacity: 0;
@@ -87,6 +88,16 @@
       to {
         opacity: 1;
         transform: translateY(0);
+      }
+    }
+
+    /* Blinking heart animation */
+    @keyframes blink {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
       }
     }
   </style>
@@ -100,6 +111,35 @@
     <p>Looking forward to seeing your beautiful smile,<br>
       <strong>Jonathan Zhou</strong></p>
     <p><span class="heart">❤</span> "(I swear I'm not whipped)"</p>
+
+    <!-- Checkbox options -->
+    <div class="checkbox-group">
+      <label>
+        <input type="checkbox" name="response" value="yes"> Yes
+      </label>
+      <label>
+        <input type="checkbox" name="response" value="hell_yes"> Hell Yes
+      </label>
+    </div>
+
+    <!-- Submit button -->
+    <button onclick="submitResponse()">Submit</button>
   </div>
+
+  <script>
+    function submitResponse() {
+      // Get the checked checkboxes
+      const selectedResponse = document.querySelector('input[name="response"]:checked');
+      
+      // If no checkbox is selected, alert the user
+      if (!selectedResponse) {
+        alert("Please select a response.");
+        return;
+      }
+
+      // Redirect to confirmation page
+      window.location.href = "confirmation.html";
+    }
+  </script>
 </body>
 </html>

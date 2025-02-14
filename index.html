@@ -18,8 +18,8 @@
       justify-content: center;
       align-items: center;
       height: 100vh; /* Full-screen height */
-      overflow: hidden; /* Prevent scrolling */
       color: white; /* White text color */
+      flex-direction: column; /* Stack the messages vertically */
     }
     
     #countdown {
@@ -62,28 +62,6 @@
       border-radius: 15px;
       visibility: visible; /* Make it visible initially */
     }
-
-    /* Falling hearts animation */
-    .heart {
-      position: absolute;
-      width: 20px;
-      height: 20px;
-      background-color: red;
-      clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
-      animation: fall 5s infinite ease-in-out;
-      opacity: 0.8;
-    }
-
-    @keyframes fall {
-      0% {
-        transform: translateY(-100px) rotate(0deg);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(110vh) rotate(360deg);
-        opacity: 0;
-      }
-    }
   </style>
 </head>
 <body>
@@ -94,12 +72,12 @@
     // Get the current year
     const currentYear = new Date().getFullYear();
 
-    // Set target date to February 14th, 3:40 AM of the current year
-    let targetDate = new Date(`February 14, ${currentYear} 03:40:00`).getTime();
+    // Set target date to February 14th of the current year
+    let targetDate = new Date(`February 14, ${currentYear} 00:00:00`).getTime();
 
     // If today is past February 14th, set target to next year
     if (new Date().getTime() > targetDate) {
-      targetDate = new Date(`February 14, ${currentYear + 1} 03:40:00`).getTime();
+      targetDate = new Date(`February 14, ${currentYear + 1} 00:00:00`).getTime();
     }
 
     // Show "Incoming surprise..." for 3 seconds, then start countdown
@@ -121,7 +99,7 @@
       const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
       // Display the countdown
-      document.getElementById('countdown').innerHTML = `
+      document.getElementById('countdown').innerHTML = ` 
         ${days}d ${hours}h ${minutes}m ${seconds}s
       `;
 
@@ -134,23 +112,6 @@
         }, 3000); // Wait for 3 seconds before redirecting
       }
     }, 1000);
-
-    // Generate falling hearts
-    const createHeart = () => {
-      const heart = document.createElement('div');
-      heart.classList.add('heart');
-      heart.style.left = `${Math.random() * 100}vw`;
-      heart.style.animationDuration = `${3 + Math.random() * 2}s`; // Random fall speed
-      document.body.appendChild(heart);
-
-      // Remove heart after animation ends
-      setTimeout(() => {
-        heart.remove();
-      }, 5000);
-    };
-
-    // Create hearts at intervals
-    setInterval(createHeart, 300); // One heart every 300ms
   </script>
 
   <!-- Fallback message for users without JavaScript -->
