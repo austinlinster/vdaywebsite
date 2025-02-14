@@ -4,61 +4,102 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Celebration!</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Merriweather&display=swap" rel="stylesheet">
   <style>
     body {
-  margin: 0;
-  padding: 0;
-  height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
-  /* Background image styles */
-  background-color: #002b00; /* Fallback color */
-  background-image: url('background.jpeg'); /* Replace with your actual image */
-  background-size: cover; /* Ensures the image covers the screen */
-  background-position: center; /* Centers the image */
-  background-repeat: no-repeat; /* Prevents tiling */
-}
+      /* Background image styles */
+      background-color: #002b00; /* Fallback color */
+      background-image: url('background.jpeg'); /* Replace with your actual image */
+      background-size: cover; /* Ensures the image covers the screen */
+      background-position: center; /* Centers the image */
+      background-repeat: no-repeat; /* Prevents tiling */
+      position: relative;
+    }
+
+    /* Optional gradient overlay on background */
+    body::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3));
+      z-index: 1;
+    }
 
     .message-box {
-  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
-  padding: 40px;
-  border-radius: 10px;
-  text-align: center;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-
-  /* Set dimensions */
-  width: 300px; /* Fixed width */
-  max-width: 90%; /* Responsive cap */
-  height: auto; /* Allow the height to grow based on content */
-
-  /* Optional centering for inner text */
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
+      position: relative;
+      z-index: 2; /* Ensure it appears above the overlay */
+      background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white */
+      padding: 40px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+      width: 300px; /* Fixed width */
+      max-width: 90%; /* Responsive cap */
+    }
 
     h1 {
-      font-size: 2.5rem;
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.8rem;
       color: #002b00; /* Forest green text */
+      margin-bottom: 10px;
+      animation: fadeIn 2s ease-in-out;
     }
+
     p {
+      font-family: 'Merriweather', serif;
       font-size: 1.2rem;
       color: #333;
+      line-height: 1.6;
+    }
+
+    /* Subtle blinking heart animation */
+    .heart {
+      color: red;
+      font-size: 1.5rem;
+      animation: blink 1.5s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% {
+        opacity: 1;
+      }
+      50% {
+        opacity: 0.5;
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
   </style>
 </head>
 <body>
   <div class="message-box">
-    <h1>Happy Valentine's Day Stephanie J Ho</h1>
-    <p>Dearest Stephanie, </p>
-    <p>I would be honored if you’d join me for a special dinner on Thursday, February 15th. Your chariot will arrive to pick you up promptly at 7:15 PM, so please be ready to dazzle.
-        
-        The evening calls for a touch of elegance, so the dress code is formal. I can’t wait to spend this time with you, making memories together.</p>
-    <p>Looking forward to seeing your beautiful smile,
-        Jonathan Zhou</p>
+    <h1>Happy Valentine's Day, Stephanie J. Ho</h1>
+    <p>Dearest Stephanie,</p>
+    <p>I would be honored if you’d join me for a special dinner on Saturday, February 15th. Your chariot, aka my Mazda, will arrive to pick you up promptly at 7:15 PM, so please be ready to dazzle.</p>
+    <p>The evening calls for a touch of elegance, so the dress code is formal. I can’t wait to spend this time with you, making memories together.</p>
+    <p>Looking forward to seeing your beautiful smile,<br>
+      <strong>Jonathan Zhou</strong></p>
+    <p><span class="heart">❤</span> "(I swear I'm not whipped)"</p>
   </div>
 </body>
 </html>
